@@ -10,7 +10,7 @@ table
 
 td
 {
-	border:dotted
+	border:dotted;
 }
 
 input
@@ -19,7 +19,7 @@ input
 	height: 50px;
 	text-align: center;
 	border:hidden;
-	font-size:x-large
+	font-size:x-large;
 }
 
 tr:nth-child(3)
@@ -77,4 +77,6 @@ button:hover
 	color:#ffffff;
 	background-color:#094292;
 }
+
+
 
