@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sodoku</title>
+    <script type="text/javascript" src="sudoku.js"></script>
+    <link rel="stylesheet" type="text/css" href="sudoku.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="title">Sudoku</div>
+    <table id="sodokutable">
+    </table>
+    <button id="clearbutton">Reset</button>
+    <div class="error" id="error"></div>
+    <script type="text/javascript">
+        window.addEventListener('load', Init, false);
+    </script>
+</body>
+</html>
