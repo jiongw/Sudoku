@@ -1,5 +1,13 @@
+// a 9*9 matrix stores a sudoku configuration
 var grid;
+
+// a 3*9 matrix stores results for checking if a configuration is completed. 
+// result[0][i] = true means the ith row is completed. 
+// result[1][i] = true means the ith column is completed.
+// result[2][i] = true means the ith block is completed.
 var result;
+
+// stores initial configuration. currently it is hard-coded.
 var initialValue = [{ "x": 0, "y": 0, "value": 5 },
                     { "x": 0, "y": 1, "value": 3 },
                     { "x": 0, "y": 4, "value": 7 },
@@ -32,10 +40,10 @@ var initialValue = [{ "x": 0, "y": 0, "value": 5 },
                     { "x": 8, "y": 8, "value": 9 }
 ];
 
+//init data structure and UI.
 function Init() {
     InitGrid();
     InitUI();
-
 }
 
 function InitGrid() {
@@ -51,6 +59,7 @@ function InitGrid() {
     $('#clearbutton').click(ButtonClicked)
 }
 
+//event handler when button is clicked. Reset UI/data
 function ButtonClicked() {
     InitData();
     InitUI();
@@ -97,6 +106,7 @@ function InitUI() {
     $('#sodokutable').append(tb);
 }
 
+//event handler when a cell has been updated. Check if the current configuration is valid/invalid/complete
 function Update(obj) {
     var id = $(obj).attr("id");
     ClearError();
@@ -112,6 +122,8 @@ function Update(obj) {
     Check(id[1], id[2]);
 }
 
+//check if the updated row/column/block is still valid
+//check if we have found a solution
 function Check(m, n) {
     var tb = new Array(9);
     for (var i = 0; i < 9; i++)
@@ -137,7 +149,6 @@ function Check(m, n) {
     result[0][m] = isDone;
     if (isValid==false) {
         PrintError(m, 0);
-        return;
     }
 
     for (var i = 0; i < 9; i++) {
@@ -160,7 +171,6 @@ function Check(m, n) {
     result[1][n] = isDone;
     if (isValid==false) {
         PrintError(n, 1);
-        return;
     }
 
     var rowstart = Math.floor(m / 3) * 3;
@@ -189,9 +199,7 @@ function Check(m, n) {
     result[2][number] = isDone;
     if (isValid == false) {
         PrintError(number, 2);
-        return;
     }
-
     CheckResult();
 }
 
@@ -202,7 +210,7 @@ function CheckResult() {
                 return;
         }
     }
-    PrintError("Successfull!", 3);
+    PrintError("SUCCESS!", 3);
 }
 
 function ClearError() {
@@ -211,16 +219,16 @@ function ClearError() {
 
 function PrintError(num, type) {
     if (type == 0) {
-        $('#error').html("row #" + num + " has error");
+        $('#error').append("row #" + num + " has error<br>");
     }
     if (type == 1) {
-        $('#error').html("column #" + num + " has error");
+        $('#error').append("column #" + num + " has error<br>");
     }
     if (type == 2) {
-        $('#error').html("block #" + num + " has error");
+        $('#error').append("block #" + num + " has error<br>");
     }
     if (type == 3) {
-        $('#error').html(num);
+        $('#error').append(num);
     }
 
 }
